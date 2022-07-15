@@ -6,6 +6,11 @@
 
 <div class="col-lg-6">
     
+     {{-- //error validation --}}
+ @include('includes.form_error')
+
+
+
 {!! Form::open(['method'=>'POST', 'action'=> 'App\Http\Controllers\AdminUsersController@store','files'=>true]) !!}
 
 
@@ -35,12 +40,17 @@
     {!! Form::label('password', 'Password:') !!}
     {!! Form::password('password', ['class'=>'form-control'])!!}
  </div>
- 
+
    <div class="form-group">
       {!! Form::submit('Create User', ['class'=>'btn btn-primary']) !!}
    </div>
 
  {!! Form::close() !!}
+
+
 </div>
+
+
+
 
 @endsection
