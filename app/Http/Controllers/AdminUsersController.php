@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Photo;
+
 
 
 class AdminUsersController extends Controller
@@ -47,9 +49,38 @@ class AdminUsersController extends Controller
      */
     public function store(UserRequest $request)
     {
+
         //persist data
-        User::create($request->all());
-        return redirect('/admin/users');
+        //User::create($request->all());
+        //return redirect('/admin/users');
+
+        //lets see if the photo_id is there
+        // if($request->file('photo_id')){
+        //     return "photo exists";
+        // }
+
+        $input = $request->all();
+
+        //if there is a photo
+         //$request->file('photo_id') returnsss C:\xampp\tmp\phpA16A.tmp
+
+        if($file = $request->file('photo_id')){
+
+        //concatinate time before the real name of the photo
+        $photoName = time().$file->getClientOriginalName();
+        //move to images folder in the public dir if not present make one
+        $file->move('images',$photoName);
+        $photo = Photo::create(['path' => $photoName]);
+        //after persisiting data to photo table above, the attribute
+        //of 'id' come to exist
+        $input['photo_id'] = $photo->id;
+
+        }
+
+    $input['password'] = bcrypt($request->password);
+    User::create($input);
+    redirect('/admin/users');
+
     }
 
     /**

@@ -80,10 +80,13 @@
                     <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
                     <ul id="demo" class="collapse">
                         <li>
-                            <a href="#">Dropdown Item</a>
+                            <a href="/admin/users">All Users</a>
+                            {{-- this is the better way --}}
+                            {{-- <a href="{{ route('admin.users') }}">All Users</a> --}}
+
                         </li>
                         <li>
-                            <a href="#">Dropdown Item</a>
+                            <a href="/admin/users/create">Create User</a>
                         </li>
                     </ul>
                 </li>
@@ -92,6 +95,7 @@
                 </li>
             </ul>
         </div>
+        
         <!-- /.navbar-collapse -->
     </nav>
 
