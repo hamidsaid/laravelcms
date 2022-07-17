@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminPostsController;
+use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,5 +29,13 @@ Route::get('/admin', function () {
     return view('admin.index');
 });
 
-Route::resource('admin/users' , 'App\Http\Controllers\AdminUsersController');
+//assigning a route(s) to its middleware for security 
+Route::middleware(['admin'])->group(function(){
+    
+    Route::resource('admin/users' , 'App\Http\Controllers\AdminUsersController');
+    //or like this,, newer way
+    Route::resource('admin/posts' , AdminPostsController::class);
+
+
+});
 

@@ -4,6 +4,24 @@
 @section('content')
 <h1>USERS</h1>
 
+
+@if(Session::has('deleted_user'))
+
+<div class="alert alert-danger">
+    <p>{{session('deleted_user')}}</p>
+
+</div>
+@endif
+
+{{-- alert for creating a user --}}
+@if(Session::has('user_created'))
+
+<div class="alert alert-success col-lg-6">
+    <p>{{session('user_created')}}</p>
+</div>
+
+@endif
+
 <div class="col-lg-10">
     <table class="table table-striped">
         <thead>

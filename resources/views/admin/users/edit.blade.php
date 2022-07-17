@@ -62,6 +62,19 @@ data automatically form the db --}}
  {!! Form::close() !!}
 
 
+
+ {{-- DELETING FORM --}}
+ {!! Form::open(['method'=>'DELETE', 'action'=> ['App\Http\Controllers\AdminUsersController@destroy', $user->id]]) !!}
+
+
+
+ <div class="form-group">
+    {!! Form::submit('Delete user', ['class'=>'btn btn-danger col-sm-6']) !!}
+ </div>
+
+{!! Form::close() !!}
+
+
 </div>
 
 

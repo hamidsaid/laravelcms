@@ -17,7 +17,7 @@
     <!-- Custom Fonts -->
     <link href="{{  asset('css/libs/font-awesome.css') }}" rel="stylesheet" type="text/css">
 
-
+  
 </head>
 <body>
      <!-- Navigation -->
@@ -38,7 +38,7 @@
 
 
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ Auth::user()->name }} <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -46,7 +46,15 @@
                  
                     <li class="divider"></li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                         {{ __('Logout') }}
+                     </a>
+
+                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                         @csrf
+                     </form>
                     </li>
                 </ul>
             </li>
@@ -62,10 +70,10 @@
                     <a href="javascript:;" data-toggle="collapse" data-target="#posts"><i class="fa fa-fw fa-arrows-v"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>
                     <ul id="posts" class="collapse">
                         <li>
-                            <a href="posts.php">View all posts</a>
+                            <a href="{{ route('posts.index') }}">View all posts</a>
                         </li>
                         <li>
-                            <a href="">Add a post</a>
+                            <a href="{{ route('posts.create') }}">Add a post</a>
                         </li>
                     </ul>
                 </li>

@@ -19,7 +19,10 @@ class Photo extends Model
     //its accessor 
     //has to getPATH as Path is the actual field in the table photo 
     //that we are trying to get
+    //all aread taht will require the path no need to specify it bcoz of wrinting this
+    //format [getXAttribute] where X in field 
     public function getPathAttribute($photo){
         return $this->imagePath . $photo;
     }
+    
 }

@@ -9,6 +9,7 @@ use App\Http\Requests\UsersEditRequest;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Photo;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -39,6 +40,8 @@ class AdminUsersController extends Controller
         //$roles = Role::all();
         //instead of the aboce , this pulls specific data in a collection/array format
         $roles = Role::pluck('name','id');
+
+
         return view('admin.users.create', compact('roles'));
 
     }
@@ -81,7 +84,11 @@ class AdminUsersController extends Controller
 
     $input['password'] = bcrypt($request->password);
     User::create($input);
-    return redirect("{{ route('users.index') }}");
+
+    Session::flash('user_created','Successfully Created');
+
+
+    return redirect("admin/users");
 
     }
 
@@ -164,6 +171,16 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        //delete tyhe users image from the images directory
+        unlink(public_path(). $user->photo->path);
+        //show message
+        //pass the data below to the subsecuent request i.e admin/users (user.index)
+        Session::flash('deleted_user','The user has been deleted');
+
+
+        return redirect('/admin/users');
     }
 }
