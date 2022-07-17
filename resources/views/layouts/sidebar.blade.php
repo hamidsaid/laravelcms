@@ -80,13 +80,13 @@
                     <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
                     <ul id="demo" class="collapse">
                         <li>
-                            <a href="/admin/users">All Users</a>
+                            {{-- <a href="/admin/users">All Users</a> --}}
                             {{-- this is the better way --}}
-                            {{-- <a href="{{ route('admin.users') }}">All Users</a> --}}
+                            <a href="{{ route('users.index') }}">All Users</a>
 
                         </li>
                         <li>
-                            <a href="/admin/users/create">Create User</a>
+                            <a href="{{ route('users.create') }}">Create User</a>
                         </li>
                     </ul>
                 </li>

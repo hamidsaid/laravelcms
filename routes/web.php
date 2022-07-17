@@ -28,3 +28,4 @@ Route::get('/admin', function () {
 });
 
 Route::resource('admin/users' , 'App\Http\Controllers\AdminUsersController');
+
