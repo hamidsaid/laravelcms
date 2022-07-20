@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
+    /**+
+     * 
      * Run the migrations.
      *
      * @return void
@@ -20,6 +21,10 @@ return new class extends Migration
             $table->string('title');
             $table->text('body');
             $table->timestamps();
+
+            //for deleting users with relations
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 

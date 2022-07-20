@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UsersEditRequest;
-
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Photo;
@@ -85,6 +84,7 @@ class AdminUsersController extends Controller
     $input['password'] = bcrypt($request->password);
     User::create($input);
 
+    //creates a session flash message
     Session::flash('user_created','Successfully Created');
 
 
@@ -101,6 +101,7 @@ class AdminUsersController extends Controller
     public function show($id)
     {
         //
+
     }
 
     /**
